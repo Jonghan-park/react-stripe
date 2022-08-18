@@ -22,8 +22,12 @@ const PaymentForm = () => {
        amount: 1000,
        id
      }) 
+     if(response.data.success){
+       console.log("Successful payment");
+       setSuccess(true)
+     }
     } catch (error) {
-      
+      console.log("Error", error)
     }
   }
 
