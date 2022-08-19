@@ -2,6 +2,26 @@ import React, { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 
+const CARD_OPTIONS = {
+  iconStyle: "solid",
+  style: {
+    base: {
+      iconColor: "#c4f0ff",
+      color: "#fff",
+      fontWeight: 500,
+      fontFamily: "Open Sans",
+      fontSize: "16px",
+      fontSmoothing: "antialiased",
+      ":-webkit-autofill": {color: "#fce883"},
+      "::placeholder": {color: "#87bbfd"}
+    },
+    invalid:{
+      iconColor: "#ffc7ee",
+      color: "#ffc7ee"
+    }
+  }
+}
+
 const PaymentForm = () => {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
@@ -41,8 +61,14 @@ const PaymentForm = () => {
           <CardElement options={CARD_OPTIONS} />
         </div>
       </fieldset>
+      <button>Pay</button>
     </form>  
-     ) : () }
+ ) : (
+   <div>
+     <h2>You just bought a sweet spatula</h2>
+   </div>
+
+ ) }
   </div>;
 };
 
