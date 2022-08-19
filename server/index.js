@@ -5,7 +5,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(cors());
@@ -15,7 +15,7 @@ app.post("/payment", cors(), async (req, res) => {
   try {
     const payment = await stripe.paymentIntents.create({
       amount,
-      currency: "CAD",
+      currency: "USD",
       description: "Spatula Company",
       payment_method: id,
       confirm: true,
@@ -35,6 +35,6 @@ app.post("/payment", cors(), async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server is listening on 5000");
 });
