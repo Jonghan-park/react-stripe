@@ -29,9 +29,21 @@ const PaymentForm = () => {
     } catch (error) {
       console.log("Error", error)
     }
+  }else{
+    console.log(error.message)
   }
 
-  return <div>PaymentForm</div>;
+  return <div>
+    {!success ? (
+    <form onSubmit={handleSubmit}>
+      <fieldset className="FormGroup">
+        <div className="FormRow">
+          <CardElement options={CARD_OPTIONS} />
+        </div>
+      </fieldset>
+    </form>  
+     ) : () }
+  </div>;
 };
 
 export default PaymentForm;
